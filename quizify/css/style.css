@@ -73,7 +73,7 @@ header {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    align-items: center
+    align-items: center;
 }
 
 .header-logo {
@@ -84,6 +84,20 @@ header {
 .header-user-info {
     margin: 10px 20px;
     display: flex;
+    border: 1px white solid;
+    border-radius: 25px;
+    padding: 5px 15px 5px 5px;
+}
+
+.header-user-photo {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+.header-user-name{
+    padding-left: 6px;
+    align-self: center;
 }
 
 .question-container {
