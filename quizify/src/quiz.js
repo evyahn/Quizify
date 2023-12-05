@@ -21,12 +21,17 @@ const cityQuiz = {
     genre: ""
 }
 
-console.log("hello")
-const backToHome = document.querySelector(".page-button-container");
-console.log(backToHome)
+// back to home button -> index.html
+const backToHome = document.querySelector(".page-button");
 backToHome.addEventListener("click", () => {
-    console.log("clicked home")
     window.location.href = "index.html";
+})
+
+// get results button -> display result box
+const getResultsButton = document.querySelector(".get-results-button")
+const resultsBox = document.querySelector(".result-container")
+getResultsButton.addEventListener("click", () => {
+    resultsBox.classList.remove("hide");
 })
 
 
