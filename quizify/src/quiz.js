@@ -21,6 +21,15 @@ const cityQuiz = {
     genre: ""
 }
 
+console.log("hello")
+const backToHome = document.querySelector(".page-button-container");
+console.log(backToHome)
+backToHome.addEventListener("click", () => {
+    console.log("clicked home")
+    window.location.href = "index.html";
+})
+
+
 // Taste: Question 1
 
 const tasteOne = document.querySelector('#taste-answer-1');

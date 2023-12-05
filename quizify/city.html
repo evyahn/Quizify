@@ -7,11 +7,21 @@
     <meta name="viewport" content="width=!, initial-scale=1.0">
     <title>City Quiz</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/html5reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- <script src="quiz.js" defer> </script> -->
+    <script src="src/quiz.js" defer> </script>
     
 </head>
 <body>
+
+    <header> 
+        <img src="images/favicon.ico" class="header-logo">
+        <div class="header-user-info">
+            <p> username </p>
+            <p> photo </p>
+        </div>
+    </header>
+
     <h1> Make a playlist according to what U.S. city you should be living in. </h1>  
 
     <div class="grid-container">
@@ -196,6 +206,10 @@
             </div>
         </div>
 
+        <div class="page-button-container">
+            <button class="get-results-button"> Get Results! </button>
+        </div>
+
         <div id="city-result" class="result-container">
             <h2 class="result-title"> Your city: </h2>
             <div class="result-details">
@@ -206,9 +220,15 @@
         </div>
     </div>
 
-    <div class="home-button-container">
-        <button class="home-button"> Back to Home </button>
+    <div class="page-button-container">
+        <button class="page-button"> Back to Home </button>
     </div>
+
+    <footer>
+        <p>Quizify<br>
+        © Evelyn Ahn &amp; Grace Whaley<br>
+        SI 379 2023</p>
+    </footer>
 
 </body>
 </html>

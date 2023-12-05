@@ -8,13 +8,16 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/html5reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- <script src="quiz.js" defer> </script> -->
+    <script src="src/quiz.js" defer> </script>
     
 </head>
 <body>
     <header> 
-        <img src="images/favicon.ico">
-        <p> Hello </p>
+        <img src="images/favicon.ico" class="header-logo">
+        <div class="header-user-info">
+            <p> username </p>
+            <p> photo </p>
+        </div>
     </header>
 
     <h1> Make a playlist according to your current mood. </h1>
@@ -86,6 +89,10 @@
             <h3> Love all the hits </h3>
             </div>
         </div>
+
+        <div class="page-button-container">
+            <button class="get-results-button"> Get Results! </button>
+        </div>
        
         <div id="mood-result" class="result-container">
             <h2 class="result-title"> Your mood: </h2>
@@ -98,9 +105,15 @@
 
     </div>
 
-    <div class="home-button-container">
-        <button class="home-button"> Back to Home </button>
+    <div class="page-button-container">
+        <button class="page-button"> Back to Home </button>
     </div>
    
+    <footer>
+        <p>Quizify<br>
+        © Evelyn Ahn &amp; Grace Whaley<br>
+        SI 379 2023</p>
+    </footer>
+
 </body>
 </html>
