@@ -91,6 +91,7 @@ async function generateCodeChallenge(codeVerifier) {
         .replace(/\//g, '_')
         .replace(/=+$/, '');
 }
+
 // Evelyn's implementation 12/2/2023
 async function printRecs(token) {
     const result = await fetch("https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA",{
