@@ -1,31 +1,28 @@
-const tasteQuiz = {
-    energy: "",
-    genre: "",
-    popularity: "",
-    speechiness: ""
-}
+// energy, genre, popularity, speechiness
+const tasteQuizArray = ['', '', '', '']
 
-const nothing = [0]
 const energyTaste = [0.2, 0.85, 1, 0.6, 0.35, 0];
 const genreTaste = ['pop', 'country', 'r&b', 'latinpop', 'punk', 'indie'];
 const popularityTaste = [100, 30, 10, 80, 60, 0];
 const speechinessTaste = [0.15, 0.3, 0.6, 0.9, 0.5, 0.1]
 
-const moodQuiz = {
-    energy: "",
-    genre: "",
-    popularity: ""
-}
+const moodQuizArray = []
+// const moodQuiz = {
+//     energy: "",
+//     genre: "",
+//     popularity: ""
+// }
 
-const cityQuiz = {
-    energy: "",
-    valence: "",
-    dance: "",
-    tempo: "",
-    popularity: "",
-    speechiness: "",
-    genre: ""
-}
+const cityQuizArray[]
+// const cityQuiz = {
+//     energy: "",
+//     valence: "",
+//     dance: "",
+//     tempo: "",
+//     popularity: "",
+//     speechiness: "",
+//     genre: ""
+// }
 
 console.log("hello")
 const backToHome = document.querySelector(".page-button-container");
@@ -37,33 +34,31 @@ backToHome.addEventListener("click", () => {
 
 const tasteQOne = document.querySelector('#taste-question-1');
 tasteQOne.addEventListener("mouseover", () => {
-    console.log('question 1');
+    // console.log('question 1');
     hoverQuestion(tasteQOne);
 })
 const tasteQTwo = document.querySelector('#taste-question-2');
 tasteQTwo.addEventListener("mouseover", () => {
-    console.log('question 2');
-    hoverQuestion(tasteQTwo, energyTaste);
+    // console.log('question 2');
+    hoverQuestion(tasteQTwo, 0, energyTaste);
 })
 const tasteQThree = document.querySelector('#taste-question-3');
 tasteQThree.addEventListener("mouseover", () => {
-    console.log('question 3');
-    hoverQuestion(tasteQThree, genreTaste);
+    // console.log('question 3');
+    hoverQuestion(tasteQThree, 1, genreTaste);
 })
 const tasteQFour = document.querySelector('#taste-question-4');
 tasteQFour.addEventListener("mouseover", () => {
-    console.log('question 4');
-    hoverQuestion(tasteQFour, popularityTaste);
+    // console.log('question 4');
+    hoverQuestion(tasteQFour, 2, popularityTaste);
 })
 const tasteQFive = document.querySelector('#taste-question-5');
 tasteQFive.addEventListener("mouseover", () => {
-    console.log('question 5');
-    const speechiness = hoverQuestion(tasteQFive, speechinessTaste);
-    console.log(speechiness);
-    tasteQuiz.speechiness = speechiness;
+    // console.log('question 5');
+    hoverQuestion(tasteQFive, 3, speechinessTaste);
 })
 
-function hoverQuestion(divHover, keywordarray) {
+function hoverQuestion(divHover, index, keywordarray) {
     const tasteOne = divHover.querySelector('#taste-answer-1');
     const tasteTwo = divHover.querySelector('#taste-answer-2');
     const tasteThree = divHover.querySelector('#taste-answer-3');
@@ -72,29 +67,27 @@ function hoverQuestion(divHover, keywordarray) {
     const tasteSix = divHover.querySelector('#taste-answer-6');
     tasteOne.addEventListener('click', ()=> {
         clickAnswer(tasteOne);
-        console.log(keywordarray[0]);
-        return keywordarray[0];
+        tasteQuizArray[index] = keywordarray[0];
     })
     tasteTwo.addEventListener('click', () => {
         clickAnswer(tasteTwo);
-        console.log(keywordarray[1]);
-        return keywordarray[1];
+        tasteQuizArray[index] = keywordarray[1];
     })
     tasteThree.addEventListener('click', () => {
         clickAnswer(tasteThree);
-        return keywordarray[2];
+        tasteQuizArray[index] = keywordarray[2];
     })
     tasteFour.addEventListener('click', () => {
         clickAnswer(tasteFour);
-        return keywordarray[3];
+        tasteQuizArray[index] = keywordarray[3];
     })
     tasteFive.addEventListener('click', () => {
         clickAnswer(tasteFive);
-        return keywordarray[4];
+        tasteQuizArray[index] = keywordarray[4];
     })
     tasteSix.addEventListener('click', () => {
         clickAnswer(tasteSix);
-        return keywordarray[5];
+        tasteQuizArray[index] = keywordarray[5];
     })
 }
 
