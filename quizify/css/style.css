@@ -230,3 +230,6 @@ h2{ font-size: 30px; }
   }
 
 
+.notSelected {
+    opacity: 50%;
+}
