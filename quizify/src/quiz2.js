@@ -1,19 +1,19 @@
 // energy, genre, popularity, speechiness
-const tasteQuizArray = ['', '', '', '']
+const tasteQuizArray = ['', '', '', ''];
 
 const energyTaste = [0.2, 0.85, 1, 0.6, 0.35, 0];
 const genreTaste = ['pop', 'country', 'r&b', 'latinpop', 'punk', 'indie'];
 const popularityTaste = [100, 30, 10, 80, 60, 0];
 const speechinessTaste = [0.15, 0.3, 0.6, 0.9, 0.5, 0.1]
 
-const moodQuizArray = []
+const moodQuizArray = [];
 // const moodQuiz = {
 //     energy: "",
 //     genre: "",
 //     popularity: ""
 // }
 
-const cityQuizArray[]
+const cityQuizArray = [];
 // const cityQuiz = {
 //     energy: "",
 //     valence: "",
