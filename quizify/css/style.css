@@ -151,23 +151,22 @@ h2{ font-size: 30px; }
     /* visibility: hidden; */
 }
 
-.home-button-container{
+.page-button-container{
     height: 150px;
     position: relative;
 }
 
-.home-button {
+.page-button {
     background-color: #FFECEC;
     border: #FEBEBD 3px solid;
     border-radius: 10px;
     color:#DD1F1D;
     padding: 15px 20px;
     text-align: center;
-    margin: 50px;
+    margin: 30px;
     font-size: 25px;
     margin: 0 auto;
 
-    margin: 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -175,7 +174,7 @@ h2{ font-size: 30px; }
     transform: translate(-50%, -50%);
 }
 
-.home-button:hover {
+.page-button:hover {
     border: #DD1F1D 3px solid;
     box-shadow: 4px 7px;
 }

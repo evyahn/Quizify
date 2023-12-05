@@ -21,3 +21,11 @@ const cityQuiz = {
     speechiness: "",
     genre: ""
 }
+
+console.log("hello")
+const backToHome = document.querySelector(".page-button-container");
+console.log(backToHome)
+backToHome.addEventListener("click", () => {
+    console.log("clicked home")
+    window.location.href = "index.html";
+})
