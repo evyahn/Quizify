@@ -31,6 +31,7 @@ backToHome.addEventListener("click", () => {
 const getResultsButton = document.querySelector(".get-results-button")
 const resultsBox = document.querySelector(".result-container")
 getResultsButton.addEventListener("click", () => {
+    getResultsButton.classList.add("hide")
     resultsBox.classList.remove("hide");
 })
 
