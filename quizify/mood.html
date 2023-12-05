@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Quiz</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/html5reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+    <header> 
+        <img src="images/favicon.ico">
+        <p> Hello </p>
+    </header>
+
+    <h1> Make a playlist according to your current mood. </h1>
+
+    <div class="grid-container">
+        
+        <div id="mood-question-1" class="question-container">
+            <h2 class="question-title"> Which picture best describes your current mood? </h2>
+            <div id="mood-answer-1" class="answer-container">
+                <img src="images/mood-quiz-images/mood1.jpg" class="answer-images" alt="sunrays peeking through clouds">
+                <h3> 1 </h3>
+            </div>
+            <div id="mood-answer-2" class="answer-container">
+                <img src="images/mood-quiz-images/mood2.jpg" class="answer-images" alt="dark calm ocean waters">
+                <h3> 2 </h3>
+            </div>
+            <div id="mood-answer-3" class="answer-container">
+                <img src="images/mood-quiz-images/mood3.jpg" class="answer-images" alt="heart shaped lights">
+                <h3> 3 </h3>
+            </div>
+            <div id="mood-answer-4" class="answer-container">
+                <img src="images/mood-quiz-images/mood4.jpg" class="answer-images" alt="overview of cluttered work desk">
+                <h3> 4 </h3>
+            </div>
+            <div id="mood-answer-5" class="answer-container">
+                <img src="images/mood-quiz-images/mood5.jpg" class="answer-images" alt="sunset above grassy island">
+                <h3> 5 </h3>
+            </div>
+            <div id="mood-answer-6" class="answer-container">
+                <img src="images/mood-quiz-images/mood6.jpg" class="answer-images" alt="fire flames on black background">
+                <h3> 6 </h3>
+            </div>
+        </div>
+
+        <div id="mood-question-2" class="question-container">
+            <h2 class="question-title"> What do you feel like doing right now? </h2>
+            <div id="mood-answer-7" class="answer-container">
+                <img src="images/mood-quiz-images/activity1.jpg" class="answer-images" alt="">
+                <h3> Watch a movie </h3>
+            </div>
+            <div id="mood-answer-8" class="answer-container">
+                <img src="images/mood-quiz-images/activity2.jpg" class="answer-images" alt="">
+                <h3> Go to a party </h3>
+            </div>
+            <div id="mood-answer-9" class="answer-container">
+                <img src="images/mood-quiz-images/activity3.jpg" class="answer-images" alt="">
+                <h3> Nature walk </h3>
+            </div>
+            <div id="mood-answer-10" class="answer-container">
+                <img src="images/mood-quiz-images/activity4.jpg" class="answer-images" alt="">
+                <h3> Swim </h3>
+            </div>
+            <div id="mood-answer-11" class="answer-container">
+                <img src="images/mood-quiz-images/activity5.jpg" class="answer-images" alt="">
+                <h3> Sleep </h3>
+            </div>
+            <div id="mood-answer-12" class="answer-container">
+                <img src="images/mood-quiz-images/activity6.jpg" class="answer-images" alt="">
+                <h3> Start a business </h3>
+            </div>
+        </div>
+
+        <div id="mood-question-3" class="slider-container">
+            <h2 class="question-title"> How popular is your music taste? </h2>
+            <h3> All underground </h3>
+            <div id="mood-question-13">
+                <input type="range" min="1" max="100" value="50" class="slider" id="mood-popularity">
+            </div>
+            <h3> Love all the hits </h3>
+            </div>
+        </div>
+       
+        <div id="mood-result" class="result-container">
+            <h2 class="result-title"> Your mood: </h2>
+            <div class="result-details">
+                <h3 class="result-description"> Description of results. </h3>
+                <p> Click below to listen to your playlist. </p>
+                <button> spotify link </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="home-button-container">
+        <button class="home-button"> Back to Home </button>
+    </div>
+   
+</body>
+</html>
