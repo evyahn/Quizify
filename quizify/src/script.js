@@ -1,11 +1,12 @@
 const clientId = auth.clientId; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
+let accessToken;
 
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
-    const accessToken = await getAccessToken(clientId, code);
+    accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
     console.log(profile);
     populateUI(profile);
@@ -97,5 +98,7 @@ async function printRecs(token) {
     const result = await fetch("https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA",{
         method: "GET", headers: { Authorization: `Bearer ${token}` }
     });
-    return await result.json();
+    const data = await result.json();
+    console.log(data);
+    return data;
 }
