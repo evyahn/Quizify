@@ -1,12 +1,13 @@
 const clientId = auth.clientId; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-let accessToken;
+let accessToken = localStorage.getItem('access_token') || false; // changed from "let accessToken;"
 
 if (!code) {
     redirectToAuthCodeFlow(clientId);
 } else {
     accessToken = await getAccessToken(clientId, code);
+    localStorage.setItem("access_token", accessToken) // local storage token
     const profile = await fetchProfile(accessToken);
     console.log(profile);
     populateUI(profile);

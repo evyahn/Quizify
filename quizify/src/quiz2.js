@@ -27,14 +27,6 @@ const cityMeaning = [
     [2, 7, 3, 5, 10, 0]
 ]
 
-console.log("hello")
-const backToHome = document.querySelector(".page-button-container");
-console.log(backToHome)
-backToHome.addEventListener("click", () => {
-    console.log("clicked home")
-    window.location.href = "index.html";
-})
-
 const answerContainers = document.querySelectorAll('.answer-container');
 
 for (const answerContainer of answerContainers) {
