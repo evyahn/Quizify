@@ -1,28 +1,31 @@
 // energy, genre, popularity, speechiness
-const tasteQuizArray = ['', '', '', ''];
+const tasteQuizArray = [];
+const tasteMeaning = [
+    false,
+    [0.2, 0.85, 1, 0.6, 0.35, 0],
+    ['pop', 'country', 'r&b', 'latinpop', 'punk', 'indie'],
+    [100, 30, 10, 80, 60, 0],
+    [0.15, 0.3, 0.6, 0.9, 0.5, 0.1]
+]
 
-const energyTaste = [0.2, 0.85, 1, 0.6, 0.35, 0];
-const genreTaste = ['pop', 'country', 'r&b', 'latinpop', 'punk', 'indie'];
-const popularityTaste = [100, 30, 10, 80, 60, 0];
-const speechinessTaste = [0.15, 0.3, 0.6, 0.9, 0.5, 0.1]
-
+// energy, genre, popularity
 const moodQuizArray = [];
-// const moodQuiz = {
-//     energy: "",
-//     genre: "",
-//     popularity: ""
-// }
+const moodMeaning = [
+    [0.8, 0.25, 0, 0.4, 1, 0.6],
+    ['pop', 'edm', 'folk', 'beachpop', 'lofi', 'rock'],
+    false
+]
 
+// energy, tempo, popularity, speechiness, genre, valence
 const cityQuizArray = [];
-// const cityQuiz = {
-//     energy: "",
-//     valence: "",
-//     dance: "",
-//     tempo: "",
-//     popularity: "",
-//     speechiness: "",
-//     genre: ""
-// }
+const cityMeaning = [
+    [6, 7, 8, 3, 2, 10],
+    [90, 109, 140, 75, 160, 120],
+    [30, 100, 50, 35, 80, 0],
+    [0.9, 1, 0.2, 0.5, 0.35, 0.7],
+    ['emo', 'r&b', 'folk', 'indie', 'country', 'surfrock'],
+    [2, 7, 3, 5, 10, 0]
+]
 
 console.log("hello")
 const backToHome = document.querySelector(".page-button-container");
@@ -32,78 +35,56 @@ backToHome.addEventListener("click", () => {
     window.location.href = "index.html";
 })
 
-const tasteQOne = document.querySelector('#taste-question-1');
-tasteQOne.addEventListener("mouseover", () => {
-    // console.log('question 1');
-    hoverQuestion(tasteQOne);
-})
-const tasteQTwo = document.querySelector('#taste-question-2');
-tasteQTwo.addEventListener("mouseover", () => {
-    // console.log('question 2');
-    hoverQuestion(tasteQTwo, 0, energyTaste);
-})
-const tasteQThree = document.querySelector('#taste-question-3');
-tasteQThree.addEventListener("mouseover", () => {
-    // console.log('question 3');
-    hoverQuestion(tasteQThree, 1, genreTaste);
-})
-const tasteQFour = document.querySelector('#taste-question-4');
-tasteQFour.addEventListener("mouseover", () => {
-    // console.log('question 4');
-    hoverQuestion(tasteQFour, 2, popularityTaste);
-})
-const tasteQFive = document.querySelector('#taste-question-5');
-tasteQFive.addEventListener("mouseover", () => {
-    // console.log('question 5');
-    hoverQuestion(tasteQFive, 3, speechinessTaste);
-})
+const answerContainers = document.querySelectorAll('.answer-container');
 
-function hoverQuestion(divHover, index, keywordarray) {
-    const tasteOne = divHover.querySelector('#taste-answer-1');
-    const tasteTwo = divHover.querySelector('#taste-answer-2');
-    const tasteThree = divHover.querySelector('#taste-answer-3');
-    const tasteFour = divHover.querySelector('#taste-answer-4');
-    const tasteFive = divHover.querySelector('#taste-answer-5');
-    const tasteSix = divHover.querySelector('#taste-answer-6');
-    tasteOne.addEventListener('click', ()=> {
-        clickAnswer(tasteOne);
-        tasteQuizArray[index] = keywordarray[0];
-    })
-    tasteTwo.addEventListener('click', () => {
-        clickAnswer(tasteTwo);
-        tasteQuizArray[index] = keywordarray[1];
-    })
-    tasteThree.addEventListener('click', () => {
-        clickAnswer(tasteThree);
-        tasteQuizArray[index] = keywordarray[2];
-    })
-    tasteFour.addEventListener('click', () => {
-        clickAnswer(tasteFour);
-        tasteQuizArray[index] = keywordarray[3];
-    })
-    tasteFive.addEventListener('click', () => {
-        clickAnswer(tasteFive);
-        tasteQuizArray[index] = keywordarray[4];
-    })
-    tasteSix.addEventListener('click', () => {
-        clickAnswer(tasteSix);
-        tasteQuizArray[index] = keywordarray[5];
-    })
-}
+for (const answerContainer of answerContainers) {
+    answerContainer.addEventListener('click', () => {
+        const questionContainer = answerContainer.parentElement;
+        const gridContainer = questionContainer.parentElement;
+        console.log(gridContainer);
 
-function clickAnswer(selectedItem) {
-    const tasteQuestion = selectedItem.parentElement.querySelectorAll('div');
-    tasteQuestion.forEach((div) => {
-        if(div.classList.contains('currentAnswer')) {
-            div.classList.remove('currentAnswer')
-        }
-    })
-    selectedItem.classList.add('currentAnswer');
-    tasteQuestion.forEach((div) => {
-        div.classList.remove('notSelected');
-        if (div.classList.contains('currentAnswer')) {
-        } else {
+        const tasteQuestions = questionContainer.querySelectorAll('.answer-container');
+        tasteQuestions.forEach((div) => {
+            if(div.classList.contains('currentAnswer')) {
+                div.classList.remove('currentAnswer')
+            }
             div.classList.add('notSelected');
+        });
+        answerContainer.classList.add('currentAnswer');
+        answerContainer.classList.remove('notSelected');
+
+        const questions = gridContainer.querySelectorAll('.question-container');
+        
+        const childIndex = Array.from(tasteQuestions).indexOf(answerContainer);
+        const questionIndex = Array.from(questions).indexOf(questionContainer);
+
+        console.log(`Question ${questionIndex}, Answer ${childIndex}`);
+        // if(tasteMeaning[questionIndex]) {
+        //     tasteQuizArray[questionIndex] = tasteMeaning[questionIndex][childIndex];
+        // }
+        
+        if (gridContainer.classList.contains('taste')) {
+            if(tasteMeaning[questionIndex]) {
+                tasteQuizArray[questionIndex] = tasteMeaning[questionIndex][childIndex];
+            }
+            console.log(tasteQuizArray);
+        }  else if (gridContainer.classList.contains('mood')) {
+            if(moodMeaning[questionIndex]) {
+                moodQuizArray[questionIndex] = moodMeaning[questionIndex][childIndex];
+            }
+            console.log(moodQuizArray);
+        } else {
+            if(cityMeaning[questionIndex]) {
+                cityQuizArray[questionIndex] = cityMeaning[questionIndex][childIndex];
+            }
+            console.log(cityQuizArray);
         }
-    })
+
+    });
 }
+
+const slider = document.querySelector('.slider');
+slider.addEventListener('input', () => {
+    moodQuizArray[2] = slider.value;
+    console.log(moodQuizArray);
+});

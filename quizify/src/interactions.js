@@ -1,7 +1,7 @@
 
 // back to home button -> index.html
-const backToHome = document.querySelector(".page-button");
-backToHome.addEventListener("click", () => {
+const backToHome2 = document.querySelector(".page-button");
+backToHome2.addEventListener("click", () => {
     window.location.href = "index.html";
 })
 

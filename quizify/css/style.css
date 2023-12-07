@@ -298,14 +298,14 @@ button {
     -webkit-transition: .2s;
     transition: opacity .2s;
     
-  }
+}
 
-  #mood-question-13 {
+#mood-question-13 {
     width: 90%;
     align-self: center;
-  }
+}
   
-  .slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
@@ -315,13 +315,13 @@ button {
     cursor: pointer;
   }
   
-  .slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
     background: #DD1F1D;
     cursor: pointer;
-  }
+}
 
 
 .notSelected {

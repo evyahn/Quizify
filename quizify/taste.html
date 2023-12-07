@@ -10,22 +10,22 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="src/interactions.js" defer> </script>
     <script src="src/quiz2.js" defer> </script>
-    
+    <script src="src/script.js" defer></script>
 </head>
 
 <body>
-
+<!-- girl idk how to get this to work in here... -->
     <header> 
         <img src="images/quizlogo.png" class="header-logo">
         <div class="header-user-info">
-            <img src="images/noprofilepic.webp" class="header-user-photo">
-            <p class="header-user-name"> username </p>
+            <span id="avatar"></span>
+            <p class="header-user-name"><span id="displayName"></span></p>
         </div>
     </header>
 
     <h1> Make a playlist according to your music taste. </h1>
 
-    <div class="grid-container">
+    <div class="taste grid-container">
         
         <div id="taste-question-1" class="question-container">
             <h2 class="question-title"> What color best represents your music taste? </h2>
