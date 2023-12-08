@@ -84,30 +84,30 @@ slider.addEventListener('input', () => {
 
 // CALLS FOR RECOMMENDATIONS WHEN GET PLAYLIST BUTTON IS PRESSED 
 
-const tasteResultDiv = document.querySelector("#taste-playlist-button"); // why are all of these null ?????????
-console.log("taste result -------- " + tasteResultDiv)                  // not printing...........
-tasteResultDiv.addEventListener("click", () => {
-    console.log("clicked taste result button");
-    const data = tasteRec(tasteQuizArray);
-    const tracks = parseRec(data);
-    createPlaylist(profile, tracks);
-})
+// const tasteResultDiv = document.querySelector("#taste-playlist-button"); // why are all of these null ?????????
+// console.log("taste result -------- " + tasteResultDiv)                  // not printing...........
+// tasteResultDiv.addEventListener("click", () => {
+//     console.log("clicked taste result button");
+//     const data = tasteRec(tasteQuizArray);
+//     const tracks = parseRec(data);
+//     createPlaylist(profile, tracks);
+// })
 
-const moodResult = document.querySelector("#mood-playlist-button"); 
-console.log("mood result -------- " + moodResult)
-moodResult.addEventListener("click", (moodArray, profile) => {
-    console.log("clicked mood result button");
-    console.log(" MOOD QUIZ ARRAY ---------- " + moodQuizArray)
-    const data = moodRec(moodQuizArray);
-    console.log(" DATA ---------- " + data)
-    const tracks = parseRec(data);
-    // createPlaylist(profile, tracks);
-})
+// const moodResult = document.querySelector("#mood-playlist-button"); 
+// console.log("mood result -------- " + moodResult)
+// moodResult.addEventListener("click", (moodArray, profile) => {
+//     console.log("clicked mood result button");
+//     console.log(" MOOD QUIZ ARRAY ---------- " + moodQuizArray)
+//     const data = moodRec(moodQuizArray);
+//     console.log(" DATA ---------- " + data)
+//     const tracks = parseRec(data);
+//     // createPlaylist(profile, tracks);
+// })
 
-const cityResult = document.querySelector("#city-playlist-button");
-cityResult.addEventListener("click", (cityArray, profile) => {
-    console.log("clicked city result button")
-    const data = cityRec(cityQuizArray);
-    const tracks = parseRec(data);
-    createPlaylist(profile, tracks);
-})
+// const cityResult = document.querySelector("#city-playlist-button");
+// cityResult.addEventListener("click", (cityArray, profile) => {
+//     console.log("clicked city result button")
+//     const data = cityRec(cityQuizArray);
+//     const tracks = parseRec(data);
+//     createPlaylist(profile, tracks);
+// })

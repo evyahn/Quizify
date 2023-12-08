@@ -6,32 +6,88 @@ backToHome2.addEventListener("click", () => {
 })
 
 // get results button -> generate result box
-const getResultsButton = document.querySelector(".get-results-button");
-const resultDiv = document.querySelector("result-container");
-getResultsButton.addEventListener("click", () => {          // create diff ones for each quiz id?
-    const title = resultDiv.createElement("h2");
+
+const resultsButton = document.querySelector(".get-results-button");
+const resultDiv = document.querySelector(".result-container")
+let resultsState = false;
+// const moodResultDiv = document.querySelector("#mood-result");
+// const tasteResultDiv1 = document.querySelector("#taste-result");
+// const cityResultDiv = document.querySelector("#city-result");
+
+resultsButton.addEventListener("click", () => { 
+    if (resultsState === false) {
+
+    let moodArray = false;
+    let tasteArray = false;
+    let cityArray = false;
+
+    const title = document.createElement("h2");
     title.classList.add("result-title");
-    title.innerText = "Result"
-    resultDiv.append(title)
+    title.innerText = "Results"
+    resultDiv.append(title);
 
-    const detailsDiv = resultDiv.createElement("div")
-    description.classList.add("result-details");
-    resultDiv.append(detailsDiv)
+    const detailsDiv = document.createElement("div");
+    detailsDiv.classList.add("result-details");
+    resultDiv.append(detailsDiv);
 
-    const description = detailsDiv.createElement("h3");
-    description.classList.add("result-description");
-    description.innerText = writeMoodResults(moodArray)   // need to link array to that
-    detailsDiv.append(description)
+    if (resultsButton.classList.contains("mood")) {
+        const moodDescription = document.createElement("h3");
+        moodDescription.classList.add("result-description");
+        moodDescription.innerText = writeMoodResults(moodQuizArray) 
+        moodArray = moodQuizArray
+        detailsDiv.append(moodDescription)
+    }
 
-    const playlistButtonContainer = detailsDiv.createElement("div");
+    if (resultsButton.classList.contains("taste")) {
+        const tasteDescription = document.createElement("h3");
+        tasteDescription.classList.add("result-description");
+        tasteDescription.innerText = writeTasteResults(tasteQuizArray) 
+        tasteArray = tasteQuizArray
+        detailsDiv.append(tasteDescription)
+    }
+
+    if (resultsButton.classList.contains("city")) {
+        const cityDescription = document.createElement("h3");
+        cityDescription.classList.add("result-description");
+        cityDescription.innerText = writeCityResults(cityQuizArray) 
+        cityArray = cityQuizArray
+        detailsDiv.append(cityDescription)
+    }
+    
+    const playlistButtonContainer = document.createElement("div");
     playlistButtonContainer.classList.add("playlist-button-container");
     detailsDiv.append(playlistButtonContainer)
 
-    const playlistButton = playlistButtonContainer.createElement("button");
+    const playlistButton = document.createElement("button");
     playlistButton.classList.add("playlist-button");
-    playlistButton.append(playlistButton)                       // add id?
+    playlistButton.innerText = "Get Playlist"
+    playlistButtonContainer.append(playlistButton) 
+    
+    resultsState = true;        // will only create one result box
 
+    playlistButton.addEventListener("click", () => {        // says rec functions are not defined ???????
+        if (Array.isArray(moodArray)) {
+            const data = moodRec(moodArray);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+        }
+        else if (Array.isArray(tasteArray)) {
+            const data = tasteRec(tasteArray);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+        }
+        else if (Array.isArray(cityArray)) {
+            const data = cityRec(cityArray);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+        }
+        
+    })
+
+    };    
 })
+
+
 
 // header logo -> quizchoice page
 const logoButton = document.querySelector(".header-logo");
@@ -53,10 +109,8 @@ function writeMoodResults(moodArray) {
     if (popularity >= 50) {
         popularityResult = "high"
     }
-    
     const description = `For you, we have created a playlist with ${energyResult} energy 
                         and ${popularityResult} popularity. Here's a ${genre} mix that will suit your mood.`
-
     return description
 }
 
@@ -73,10 +127,8 @@ function writeTasteResults(tasteArray) {
     if (popularity >= 50) {
         popularityResult = "high"
     };
-
-    const description = `For your taste, we have created a playlist with ${energyResult} energy 
-                        and ${popularityResult} popularity. Here's a ${genre} mix that will suit your taste.`
-
+    const description = `For you, we have created a playlist with ${energyResult} energy 
+                        and ${popularityResult} popularity. Here's a ${genre} mix created for your taste.`
     return description
 }
 
@@ -106,17 +158,12 @@ function writeCityResults(cityArray) {
     } else {
         city = "Phoenix, AZ"
     }
-
     const popularity = cityArray[2]
     let popularityResult = "low"
     if (popularity >= 50) {
         popularityResult = "high"
     };
     const genre = cityArray[4];
-
-
-    const description = `The city you should live in is ${city}! For your destination, we have created a playlist with ${energyResult} energy, 
-                        ${tempoResult} result, and ${popularityResult} popularity. Here's a ${genre} mix for your new city.`
-
+    const description = `The city you should live in is ${city}! For your destination, we have created a playlist with ${energyResult} energy,  ${tempoResult} tempo, and ${popularityResult} popularity. Here's a ${genre} mix for your new city.`
     return description
 }
