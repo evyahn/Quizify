@@ -5,16 +5,31 @@ backToHome2.addEventListener("click", () => {
     window.location.href = "quizchoice.html";
 })
 
-// get results button -> display result box
-const getResultsButton = document.querySelector(".get-results-button")
-const resultsBox = document.querySelector(".result-container")
-getResultsButton.addEventListener("click", () => {
-    getResultsButton.classList.add("hide")
-    resultsBox.classList.remove("hide");
-    // const description = resultsBox.querySelector("result-description");
-    // console.log("RESULT DESCRP -------- " + description)
+// get results button -> generate result box
+const getResultsButton = document.querySelector(".get-results-button");
+const resultDiv = document.querySelector("result-container");
+getResultsButton.addEventListener("click", () => {          // create diff ones for each quiz id?
+    const title = resultDiv.createElement("h2");
+    title.classList.add("result-title");
+    title.innerText = "Result"
+    resultDiv.append(title)
+
+    const description = resultDiv.createElement("h3");
+    description.classList.add("result-description");
+    description.innerText = writeMoodResults(moodArray)   // need to link array to that
+    resultDiv.append(description)
+
+    const playlistButtonContainer = resultDiv.createElement("div");
+    playlistButtonContainer.classList.add("playlist-button-container");
+    resultDiv.append(playlistButton)
+
+    const playlistButton = resultDiv.createElement("button");
+    playlistButton.classList.add("playlist-button");
+    playlistButton.append(playlistButton)                       // add id?
+
 })
 
+// header logo -> quizchoice page
 const logoButton = document.querySelector(".header-logo");
 logoButton.addEventListener("click", () => {
     window.location.href = "quizchoice.html";
@@ -37,6 +52,8 @@ function writeMoodResults(moodArray) {
     
     const description = `For you, we have created a playlist with ${energyResult} energy 
                         and ${popularityResult} popularity. Here's a ${genre} mix that will suit your mood.`
+
+    return description
 }
 
 function writeTasteResults(tasteArray) {
@@ -56,6 +73,7 @@ function writeTasteResults(tasteArray) {
     const description = `For your taste, we have created a playlist with ${energyResult} energy 
                         and ${popularityResult} popularity. Here's a ${genre} mix that will suit your taste.`
 
+    return description
 }
 
 function writeCityResults(cityArray) {
@@ -95,4 +113,6 @@ function writeCityResults(cityArray) {
 
     const description = `The city you should live in is ${city}! For your destination, we have created a playlist with ${energyResult} energy, 
                         ${tempoResult} result, and ${popularityResult} popularity. Here's a ${genre} mix for your new city.`
+
+    return description
 }

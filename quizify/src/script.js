@@ -74,7 +74,7 @@ function populateUI(profile) {
     } 
     console.log("USERNAME " + userName)
     // document.getElementById("displayName").innerText = userName;
-    // document.getElementById("displayName").innerText = profile.display_name;
+    document.getElementById("displayName").innerText = profile.display_name;
     if (profile.images[0]) {
         const profileImage = new Image(35, 35);
         profileImage.src = profile.images[0].url;
