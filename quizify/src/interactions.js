@@ -1,3 +1,5 @@
+const profile = JSON.parse(localStorage.getItem('profile'))
+
 // back to home button -> index.html
 const backToHome2 = document.querySelector(".home-button");
 backToHome2.addEventListener("click", () => {
@@ -22,7 +24,7 @@ function parseRec(result) {
     for (const item in result["tracks"]) {
         console.log(" ITEM IN result[tracks] ----- " + item)
         const trackId = item["id"]
-        console.log(" ITEM'S ID = " + trackId)
+        // console.log(" ITEM'S ID = " + trackId)
         trackIds.push(trackId);
     }
     return trackIds;

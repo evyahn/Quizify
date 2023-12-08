@@ -2,6 +2,7 @@ const clientId = auth.clientId; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 let accessToken; // = JSON.parse(localStorage.getItem('access_token') || false); // changed from "let accessToken;"
+let profile;
 console.log("get access token " + accessToken)
 
 if (!code) {
@@ -11,8 +12,9 @@ if (!code) {
     console.log("await access token " + accessToken)
     localStorage.setItem("access_token", JSON.stringify(accessToken)) // local storage token
     // accessToken = JSON.parse(localStorage.getItem("access_token"));
-    const profile = await fetchProfile(accessToken);
-    console.log(profile);
+    profile = await fetchProfile(accessToken);
+    localStorage.setItem("profile", JSON.stringify(profile)) // local storage token
+    console.log("PROFILE ------------- " + profile);
     populateUI(profile);
     printRecs(accessToken);
     console.log(accessToken);
