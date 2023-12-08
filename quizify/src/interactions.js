@@ -1,4 +1,3 @@
-
 // back to home button -> index.html
 const backToHome2 = document.querySelector(".home-button");
 backToHome2.addEventListener("click", () => {
@@ -13,6 +12,63 @@ async function moodRec(moodArray) {
     });
     const data = await result.json()
     return data;
+}
+
+// todo: create a function that parses through the recommendations and outputs an array with all of the track ids
+function parseRec(result) {
+    // dictionry -> "tracks" -> "id"
+    // ^ playlist_id required for adding song to playlist
+    const trackIds = []
+    for (const item in result["tracks"]) {
+        console.log(" ITEM IN result[tracks] ----- " + item)
+        const trackId = item["id"]
+        console.log(" ITEM'S ID = " + trackId)
+        trackIds.push(trackId);
+    }
+    return trackIds;
+
+    // delete when implementing
+    // return ['track_id_1', 'track_id_2'];
+}
+
+async function createPlaylist(profile, recData) {
+    try {
+        // step 1: create playlist
+        const playlistName  = "Quizify's awesome playlist!";     // rename later
+        const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }, body: JSON.stringify({
+                name: playlistName,
+                public: true // set false if you want this to be private
+            })
+        });
+        const playlistData = await createPlaylistResponse.json();
+        const playlistId = playlistData.id;
+
+        // step 2: add tracks to playlist
+        const tracks = parseRec(recData);
+        
+        const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                uris: tracks.map(trackId => `spotify:track:${trackId}`)
+            })
+        });
+
+        const addedTracksData = await addTracksResponse.json();
+        console.log('Tracks added to playlist:', addedTracksData);
+        alert('Playlist created and tracks added successfully!');
+    } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while creating the playlist');
+    }
 }
 
 // get results button -> generate result box
@@ -71,33 +127,54 @@ resultsButton.addEventListener("click", () => {
     resultsState = true;        // creates only one result box
 
     // -------------------- WORKING ON THIS RNNNNN ---------------------------
-    playlistButton.addEventListener("click", () => {        
+    playlistButton.addEventListener("click", async () => {
         if (Array.isArray(moodArray)) {
-            const recs = async () => {
-                console.log("clicked")
-                data = await moodRec(moodArray);
-                console.log("DATA ---------------- " + data)
-                const tracks = parseRec(data);
-                createPlaylist(profile, tracks);
+            try {
+            console.log("clicked")
+            const data = await moodRec(moodArray);
+            console.log("DATA ---------------- ", data);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+            } catch (error) {
+            console.error("Error occurred:", error);
+            // Handle errors here if needed
             }
+        } else if (Array.isArray(tasteArray)) {
+            const data = tasteRec(tasteArray);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+        } else if (Array.isArray(cityArray)) {
+            const data = cityRec(cityArray);
+            const tracks = parseRec(data);
+            createPlaylist(profile, tracks);
+        }
+        });
+        // if (Array.isArray(moodArray)) {
+        //     const recs = async () => {
+        //         console.log("clicked")
+        //         data = await moodRec(moodArray);
+        //         console.log("DATA ---------------- " + data)
+        //         const tracks = parseRec(data);
+        //         createPlaylist(profile, tracks);
+        //     }
 
         // const data = moodRec(moodArray);
         // const tracks = parseRec(data);
         // createPlaylist(profile, tracks);
 
-        }
-        else if (Array.isArray(tasteArray)) {
-            const data = tasteRec(tasteArray);
-            const tracks = parseRec(data);
-            createPlaylist(profile, tracks);
-        }
-        else if (Array.isArray(cityArray)) {
-            const data = cityRec(cityArray);
-            const tracks = parseRec(data);
-            createPlaylist(profile, tracks);
-        }
+    //     }
+    //     else if (Array.isArray(tasteArray)) {
+    //         const data = tasteRec(tasteArray);
+    //         const tracks = parseRec(data);
+    //         createPlaylist(profile, tracks);
+    //     }
+    //     else if (Array.isArray(cityArray)) {
+    //         const data = cityRec(cityArray);
+    //         const tracks = parseRec(data);
+    //         createPlaylist(profile, tracks);
+    //     }
         
-    })
+    // })
 
     };    
 })

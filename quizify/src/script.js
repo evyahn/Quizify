@@ -131,16 +131,16 @@ async function tasteRec(tasteArray) {
     return data;
 }
 
-// api call to get recommendations when get results button is pressed in mood.html
-async function moodRec(moodArray) {
-    const moodURL = `https://api.spotify.com/v1/recommendations?seed_genres=${moodArray[1]}&target_energy=${moodArray[0]}&target_popularity=${moodArray[2]}`;
-    let accessToken = JSON.parse(localStorage.getItem('access_token'));
-    const result = await fetch(moodURL, {
-        method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
-    });
-    const data = await result.json()
-    return data;
-}
+// // api call to get recommendations when get results button is pressed in mood.html
+// async function moodRec(moodArray) {
+//     const moodURL = `https://api.spotify.com/v1/recommendations?seed_genres=${moodArray[1]}&target_energy=${moodArray[0]}&target_popularity=${moodArray[2]}`;
+//     let accessToken = JSON.parse(localStorage.getItem('access_token'));
+//     const result = await fetch(moodURL, {
+//         method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
+//     });
+//     const data = await result.json()
+//     return data;
+// }
 
 // api call to get recommendations when get results button is pressed in city.html
 async function cityRec(cityArray) {
@@ -153,60 +153,60 @@ async function cityRec(cityArray) {
     return data;
 }
 
-// todo: create a function that parses through the recommendations and outputs an array with all of the track ids
-function parseRec(result) {
-    // dictionry -> "tracks" -> "id"
-    // ^ playlist_id required for adding song to playlist
-    const trackIds = []
-    for (const item in result["tracks"]) {
-        console.log(" ITEM IN result[tracks] ----- " + item)
-        const trackId = item["id"]
-        console.log(" ITEM'S ID = " + trackId)
-        trackIds.push(trackId);
-    }
-    return trackIds;
+// // todo: create a function that parses through the recommendations and outputs an array with all of the track ids
+// function parseRec(result) {
+//     // dictionry -> "tracks" -> "id"
+//     // ^ playlist_id required for adding song to playlist
+//     const trackIds = []
+//     for (const item in result["tracks"]) {
+//         console.log(" ITEM IN result[tracks] ----- " + item)
+//         const trackId = item["id"]
+//         console.log(" ITEM'S ID = " + trackId)
+//         trackIds.push(trackId);
+//     }
+//     return trackIds;
 
-    // delete when implementing
-    // return ['track_id_1', 'track_id_2'];
-}
+//     // delete when implementing
+//     // return ['track_id_1', 'track_id_2'];
+// }
 
 // function creates a playlist and inputs all of the recommendations into new playlist
-async function createPlaylist(profile, recData) {
-    try {
-        // step 1: create playlist
-        const playlistName  = "Quizify's awesome playlist!";     // rename later
-        const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            }, body: JSON.stringify({
-                name: playlistName,
-                public: true // set false if you want this to be private
-            })
-        });
-        const playlistData = await createPlaylistResponse.json();
-        const playlistId = playlistData.id;
+// async function createPlaylist(profile, recData) {
+//     try {
+//         // step 1: create playlist
+//         const playlistName  = "Quizify's awesome playlist!";     // rename later
+//         const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
+//             method: 'POST',
+//             headers: {
+//                 'Authorization': `Bearer ${token}`,
+//                 'Content-Type': 'application/json',
+//             }, body: JSON.stringify({
+//                 name: playlistName,
+//                 public: true // set false if you want this to be private
+//             })
+//         });
+//         const playlistData = await createPlaylistResponse.json();
+//         const playlistId = playlistData.id;
 
-        // step 2: add tracks to playlist
-        const tracks = parseRec(recData);
+//         // step 2: add tracks to playlist
+//         const tracks = parseRec(recData);
         
-        const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                uris: tracks.map(trackId => `spotify:track:${trackId}`)
-            })
-        });
+//         const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+//             method: 'POST',
+//             headers: {
+//                 'Authorization': `Bearer ${token}`,
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({
+//                 uris: tracks.map(trackId => `spotify:track:${trackId}`)
+//             })
+//         });
 
-        const addedTracksData = await addTracksResponse.json();
-        console.log('Tracks added to playlist:', addedTracksData);
-        alert('Playlist created and tracks added successfully!');
-    } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred while creating the playlist');
-    }
-}
+//         const addedTracksData = await addTracksResponse.json();
+//         console.log('Tracks added to playlist:', addedTracksData);
+//         alert('Playlist created and tracks added successfully!');
+//     } catch (error) {
+//         console.error('Error:', error);
+//         alert('An error occurred while creating the playlist');
+//     }
+// }
