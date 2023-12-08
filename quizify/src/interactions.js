@@ -5,15 +5,20 @@ backToHome2.addEventListener("click", () => {
     window.location.href = "quizchoice.html";
 })
 
-// get results button -> generate result box
+async function moodRec(moodArray) {
+    const moodURL = `https://api.spotify.com/v1/recommendations?seed_genres=${moodArray[1]}&target_energy=${moodArray[0]}&target_popularity=${moodArray[2]}`;
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
+    const result = await fetch(moodURL, {
+        method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
+    });
+    const data = await result.json()
+    return data;
+}
 
+// get results button -> generate result box
 const resultsButton = document.querySelector(".get-results-button");
 const resultDiv = document.querySelector(".result-container")
 let resultsState = false;
-// const moodResultDiv = document.querySelector("#mood-result");
-// const tasteResultDiv1 = document.querySelector("#taste-result");
-// const cityResultDiv = document.querySelector("#city-result");
-
 resultsButton.addEventListener("click", () => { 
     if (resultsState === false) {
 
@@ -65,11 +70,19 @@ resultsButton.addEventListener("click", () => {
     
     resultsState = true;        // will only create one result box
 
+    // -------------------- WORKING ON THIS RNNNNN ---------------------------
     playlistButton.addEventListener("click", () => {        // says rec functions are not defined ???????
         if (Array.isArray(moodArray)) {
-            const data = moodRec(moodArray);
-            const tracks = parseRec(data);
-            createPlaylist(profile, tracks);
+            const recs = async () => {
+                console.log("clicked")
+                data = await moodRec(moodArray);
+                console.log("DATA ---------------- " + data)
+            }
+
+                // const data = moodRec(moodArray);
+                // const tracks = parseRec(data);
+                // createPlaylist(profile, tracks);
+
         }
         else if (Array.isArray(tasteArray)) {
             const data = tasteRec(tasteArray);
