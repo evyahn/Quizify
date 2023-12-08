@@ -68,20 +68,22 @@ resultsButton.addEventListener("click", () => {
     playlistButton.innerText = "Get Playlist"
     playlistButtonContainer.append(playlistButton) 
     
-    resultsState = true;        // will only create one result box
+    resultsState = true;        // creates only one result box
 
     // -------------------- WORKING ON THIS RNNNNN ---------------------------
-    playlistButton.addEventListener("click", () => {        // says rec functions are not defined ???????
+    playlistButton.addEventListener("click", () => {        
         if (Array.isArray(moodArray)) {
             const recs = async () => {
                 console.log("clicked")
                 data = await moodRec(moodArray);
                 console.log("DATA ---------------- " + data)
+                const tracks = parseRec(data);
+                createPlaylist(profile, tracks);
             }
 
-                // const data = moodRec(moodArray);
-                // const tracks = parseRec(data);
-                // createPlaylist(profile, tracks);
+        // const data = moodRec(moodArray);
+        // const tracks = parseRec(data);
+        // createPlaylist(profile, tracks);
 
         }
         else if (Array.isArray(tasteArray)) {
