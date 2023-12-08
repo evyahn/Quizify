@@ -1,7 +1,7 @@
 const clientId = auth.clientId; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-let accessToken = localStorage.getItem('access_token') || false; // changed from "let accessToken;"
+let accessToken = JSON.parse(localStorage.getItem('access_token') || false); // changed from "let accessToken;"
 console.log("get access token " + accessToken)
 
 if (!code) {
@@ -10,7 +10,7 @@ if (!code) {
     accessToken = await getAccessToken(clientId, code);
     console.log("await access token " + accessToken)
     localStorage.setItem("access_token", accessToken) // local storage token
-    accessToken = localStorage.getItem("access_token")
+    accessToken = JSON.parse(localStorage.getItem("access_token"));
     const profile = await fetchProfile(accessToken);
     console.log(profile);
     populateUI(profile);
@@ -56,7 +56,7 @@ export async function getAccessToken(clientId, code) {
 }
 
 async function fetchProfile(token) {
-    let accessToken = localStorage.getItem('access_token'); // added
+    let accessToken = JSON.parse(localStorage.getItem('access_token')); // added
     const result = await fetch("https://api.spotify.com/v1/me", {
         method: "GET", headers: { Authorization: `Bearer ${accessToken}` } // changed from "token"
     });
@@ -65,13 +65,15 @@ async function fetchProfile(token) {
 }
 
 function populateUI(profile) {
-    localStorage.setItem("username", profile.display_name)
-    const userName = localStorage.getItem("username")
+    localStorage.setItem("username", JSON.stringify(profile.display_name))
+    const userName = JSON.parse(localStorage.getItem("username") || false)
     const nameHeaders = document.querySelectorAll(".header-user-name")
     for (const nameHeader of nameHeaders) {
+        console.log("NAME HEADER ----- " + nameHeader)
         nameHeader.innerText = userName // not working
     } 
     console.log("USERNAME " + userName)
+    // document.getElementById("displayName").innerText = userName;
     // document.getElementById("displayName").innerText = profile.display_name;
     if (profile.images[0]) {
         const profileImage = new Image(35, 35);
@@ -109,7 +111,7 @@ async function generateCodeChallenge(codeVerifier) {
 
 // Evelyn's implementation 12/2/2023
 async function printRecs(token) {
-    let accessToken = localStorage.getItem('access_token');
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
     const result = await fetch("https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA",{
         method: "GET", headers: { Authorization: `Bearer ${accessToken}` }
     });
@@ -121,7 +123,7 @@ async function printRecs(token) {
 // api call to get recommendations when get results button is pressed in taste.html
 async function tasteRec(tasteArray) {
     const tasteURL = `https://api.spotify.com/v1/recommendations?seed_genres=${tasteArray[2]}&target_energy=${tasteArray[1]}&target_popularity=${tasteArray[3]}&target_speechiness=${tasteArray[4]}}`;
-    let accessToken = localStorage.getItem('access_token');
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
     const result = await fetch(tasteURL, {
         method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
     });
@@ -132,7 +134,7 @@ async function tasteRec(tasteArray) {
 // api call to get recommendations when get results button is pressed in mood.html
 async function moodRec(moodArray) {
     const moodURL = `https://api.spotify.com/v1/recommendations?seed_genres=${moodArray[1]}&target_energy=${moodArray[0]}&target_popularity=${moodArray[2]}`;
-    let accessToken = localStorage.getItem('access_token');
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
     const result = await fetch(moodURL, {
         method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
     });
@@ -143,7 +145,7 @@ async function moodRec(moodArray) {
 // api call to get recommendations when get results button is pressed in city.html
 async function cityRec(cityArray) {
     const cityURL = `https://api.spotify.com/v1/recommendations?seed_genres=${cityArray[4]}&target_energy=${cityArray[0]}&target_popularity=${cityArray[2]}&target_speechiness=${cityArray[3]}&target_tempo=${cityArray[1]}&target_valence=${cityArray[6]}`;
-    let accessToken = localStorage.getItem('access_token');
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
     const result = await fetch(cityURL, {
         method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
     });

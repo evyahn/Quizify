@@ -19,7 +19,7 @@ const moodMeaning = [
 // energy, tempo, popularity, speechiness, genre, valence
 const cityQuizArray = [];
 const cityMeaning = [
-    [6, 7, 8, 3, 2, 10],
+    [0.6, 0.7, 0.8, 0.3, 0.2, 1],
     [90, 109, 140, 75, 160, 120],
     [30, 100, 50, 35, 80, 0],
     [0.9, 1, 0.2, 0.5, 0.35, 0.7],
@@ -80,3 +80,33 @@ slider.addEventListener('input', () => {
     moodQuizArray[2] = slider.value;
     console.log(moodQuizArray);
 });
+
+
+const tasteResultDiv = document.querySelector("#taste-playlist-button"); // why are all of these null ?????????
+console.log("taste result -------- " + tasteResultDiv)                  // not printing...........
+tasteResultDiv.addEventListener("click", () => {
+    console.log("clicked taste result button");
+    // const data = tasteRec(tasteQuizArray);
+    // const tracks = parseRec(data);
+    // createPlaylist(profile, tracks);
+})
+
+// const moodResult = document.querySelector("#mood-playlist-button"); 
+// console.log("mood result -------- " + moodResult)
+// moodResult.addEventListener("click", (moodArray) => {
+//     console.log("clicked!!!!!")
+//     console.log("clicked mood result button");
+//     console.log(" MOOD QUIZ ARRAY ---------- " + moodQuizArray)
+//     const data = moodRec(moodQuizArray);
+//     console.log(" DATA ---------- " + data)
+//     const tracks = parseRec(data);
+//     // createPlaylist(profile, tracks);
+// })
+
+// const cityResult = document.querySelector("#city-playlist-button");
+// cityResult.addEventListener("click", (cityArray, profile) => {
+//     console.log("clicked city result button")
+//     const data = cityRec(cityQuizArray);
+//     const tracks = parseRec(data);
+//     createPlaylist(profile, tracks);
+// })

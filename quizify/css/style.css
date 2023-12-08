@@ -251,10 +251,10 @@ button {
     box-shadow: 8px 12px;
 }
 
-.hide {
+/* .hide {
     display: none;
-    /* visibility: hidden; */
-}
+    visibility: hidden;
+} */
 
 .page-button-container{
     height: 150px;
