@@ -19,21 +19,31 @@ main {
     margin: 30px 50px 50px;
 }
 
-.button {
-    width: 300px;
-    background-color: #FEBEBD;
-    border-radius: 25px;
+.button-container {
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
     align-content: center;
     align-items: center;
     justify-items: center;
-    padding-bottom: 25px;
+    grid-gap: 10px;
+}
+
+.button {
+    /* background-color: #FEBEBD; */
+    border-radius: 10px;
+    padding: 5px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: center;
 }
 
 .buttonPhoto {
-    height: 250px;
-    width: 250px;
+    height: 80%;
+    width: 80%;
+    justify-items: center;
+    margin-left: 30px;
 }
 
 h2{

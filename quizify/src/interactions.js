@@ -12,3 +12,8 @@ getResultsButton.addEventListener("click", () => {
     getResultsButton.classList.add("hide")
     resultsBox.classList.remove("hide");
 })
+
+const logoButton = document.querySelector(".header-logo");
+logoButton.addEventListener("click", () => {
+    window.location.href = "quizchoice.html";
+})
