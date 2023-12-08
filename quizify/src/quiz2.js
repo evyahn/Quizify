@@ -3,7 +3,7 @@ const tasteQuizArray = [];
 const tasteMeaning = [
     false,
     [0.2, 0.85, 1, 0.6, 0.35, 0],
-    ['pop', 'country', 'r&b', 'latinpop', 'punk', 'indie'],
+    ['pop', 'country', 'r-n-b', 'latin', 'punk-rock', 'indie'], // or "latino"
     [100, 30, 10, 80, 60, 0],
     [0.15, 0.3, 0.6, 0.9, 0.5, 0.1]
 ]
@@ -12,7 +12,7 @@ const tasteMeaning = [
 const moodQuizArray = [];
 const moodMeaning = [
     [0.8, 0.25, 0, 0.4, 1, 0.6],
-    ['pop', 'edm', 'folk', 'beachpop', 'lofi', 'rock'],
+    ['pop', 'edm', 'folk', 'indie-pop', 'chill', 'rock'], // no lofi
     false
 ]
 
@@ -23,7 +23,7 @@ const cityMeaning = [
     [90, 109, 140, 75, 160, 120],
     [30, 100, 50, 35, 80, 0],
     [0.9, 1, 0.2, 0.5, 0.35, 0.7],
-    ['emo', 'r&b', 'folk', 'indie', 'country', 'surfrock'],
+    ['emo', 'r-n-b', 'folk', 'indie', 'country', 'happy'], // no surfrock
     [2, 7, 3, 5, 10, 0]
 ]
 
@@ -82,31 +82,32 @@ slider.addEventListener('input', () => {
 });
 
 
+// CALLS FOR RECOMMENDATIONS WHEN GET PLAYLIST BUTTON IS PRESSED 
+
 const tasteResultDiv = document.querySelector("#taste-playlist-button"); // why are all of these null ?????????
 console.log("taste result -------- " + tasteResultDiv)                  // not printing...........
 tasteResultDiv.addEventListener("click", () => {
     console.log("clicked taste result button");
-    // const data = tasteRec(tasteQuizArray);
-    // const tracks = parseRec(data);
+    const data = tasteRec(tasteQuizArray);
+    const tracks = parseRec(data);
+    createPlaylist(profile, tracks);
+})
+
+const moodResult = document.querySelector("#mood-playlist-button"); 
+console.log("mood result -------- " + moodResult)
+moodResult.addEventListener("click", (moodArray, profile) => {
+    console.log("clicked mood result button");
+    console.log(" MOOD QUIZ ARRAY ---------- " + moodQuizArray)
+    const data = moodRec(moodQuizArray);
+    console.log(" DATA ---------- " + data)
+    const tracks = parseRec(data);
     // createPlaylist(profile, tracks);
 })
 
-// const moodResult = document.querySelector("#mood-playlist-button"); 
-// console.log("mood result -------- " + moodResult)
-// moodResult.addEventListener("click", (moodArray) => {
-//     console.log("clicked!!!!!")
-//     console.log("clicked mood result button");
-//     console.log(" MOOD QUIZ ARRAY ---------- " + moodQuizArray)
-//     const data = moodRec(moodQuizArray);
-//     console.log(" DATA ---------- " + data)
-//     const tracks = parseRec(data);
-//     // createPlaylist(profile, tracks);
-// })
-
-// const cityResult = document.querySelector("#city-playlist-button");
-// cityResult.addEventListener("click", (cityArray, profile) => {
-//     console.log("clicked city result button")
-//     const data = cityRec(cityQuizArray);
-//     const tracks = parseRec(data);
-//     createPlaylist(profile, tracks);
-// })
+const cityResult = document.querySelector("#city-playlist-button");
+cityResult.addEventListener("click", (cityArray, profile) => {
+    console.log("clicked city result button")
+    const data = cityRec(cityQuizArray);
+    const tracks = parseRec(data);
+    createPlaylist(profile, tracks);
+})

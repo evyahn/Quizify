@@ -14,16 +14,20 @@ getResultsButton.addEventListener("click", () => {          // create diff ones 
     title.innerText = "Result"
     resultDiv.append(title)
 
-    const description = resultDiv.createElement("h3");
+    const detailsDiv = resultDiv.createElement("div")
+    description.classList.add("result-details");
+    resultDiv.append(detailsDiv)
+
+    const description = detailsDiv.createElement("h3");
     description.classList.add("result-description");
     description.innerText = writeMoodResults(moodArray)   // need to link array to that
-    resultDiv.append(description)
+    detailsDiv.append(description)
 
-    const playlistButtonContainer = resultDiv.createElement("div");
+    const playlistButtonContainer = detailsDiv.createElement("div");
     playlistButtonContainer.classList.add("playlist-button-container");
-    resultDiv.append(playlistButton)
+    detailsDiv.append(playlistButtonContainer)
 
-    const playlistButton = resultDiv.createElement("button");
+    const playlistButton = playlistButtonContainer.createElement("button");
     playlistButton.classList.add("playlist-button");
     playlistButton.append(playlistButton)                       // add id?
 

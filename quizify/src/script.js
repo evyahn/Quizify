@@ -155,8 +155,19 @@ async function cityRec(cityArray) {
 
 // todo: create a function that parses through the recommendations and outputs an array with all of the track ids
 function parseRec(result) {
+    // dictionry -> "tracks" -> "id"
+    // ^ playlist_id required for adding song to playlist
+    const trackIds = []
+    for (const item in result["tracks"]) {
+        console.log(" ITEM IN result[tracks] ----- " + item)
+        const trackId = item["id"]
+        console.log(" ITEM'S ID = " + trackId)
+        trackIds.push(trackId);
+    }
+    return trackIds;
+
     // delete when implementing
-    return ['track_id_1', 'track_id_2'];
+    // return ['track_id_1', 'track_id_2'];
 }
 
 // function creates a playlist and inputs all of the recommendations into new playlist
