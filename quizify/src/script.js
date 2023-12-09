@@ -12,7 +12,7 @@ if (!code) {
     localStorage.setItem("access_token", JSON.stringify(accessToken)) // local storage token
     // accessToken = JSON.parse(localStorage.getItem("access_token"));
     const profile = await fetchProfile(accessToken);
-    // localStorage.setItem("profile", JSON.stringify(profile)) // local storage token
+    localStorage.setItem("profile", JSON.stringify(profile)) // local storage token
     console.log("PROFILE ------------- " + profile);
     populateUI(profile);
     printRecs(accessToken);
