@@ -1,4 +1,4 @@
-const profile = localStorage.getItem('profile');
+const profile = JSON.parse(localStorage.getItem('profile'));
 const accessToken = localStorage.getItem('access_token');
 
 // back to home button -> index.html
@@ -40,24 +40,20 @@ function parseRec(result) {
     // return ['track_id_1', 'track_id_2'];
 }
 
-console.log("PROFILE1------------ " + profile.toString())
 async function createPlaylist(profile, recData) {
     try {
         // step 1: create playlist
-        
-        // profile = profile.toString();
-        console.log("PROFILE2------------ " + profile);
         console.log("PROFILE ID -------- " + profile.id)
-        const playlistName  = "Quizify's awesome playlist!";     // rename later
+        const playlistName  = "Quizify's awesome playlist!!!";     // rename later
         const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
-            }, body: JSON.stringify({
+            }, body: {
                 name: playlistName,
                 public: true // set false if you want this to be private
-            })
+            }
         });
         const playlistData = await result.json();
         const playlistId = playlistData.id;
