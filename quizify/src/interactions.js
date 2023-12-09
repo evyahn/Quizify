@@ -27,7 +27,7 @@ function parseRec(result) {
     for (const item in result.tracks) {
         console.log(item);
         // console.log(" ITEM IN result[tracks] ----- " + item)
-        const trackId = result.tracks[item].id;
+        const trackId = "spotify:track:" + result.tracks[item].id;
         const trackName = result.tracks[item].name;
         trackNames.push(trackName);
         console.log("TRACK NAMES ----------- " + trackNames);
@@ -63,7 +63,11 @@ async function createPlaylist(profile, recData) {
         console.log("PLAYLIST ID ----------- " + playlistId)
 
         // step 2: add tracks to playlist
-        const tracks = parseRec(recData);
+        const tracksData = {
+            uris: recData
+        };
+
+        console.log(tracksData);
         
         const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'POST',
@@ -71,9 +75,7 @@ async function createPlaylist(profile, recData) {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                uris: tracks.map(trackId => `spotify:track:${trackId}`)
-            })
+            body: JSON.stringify(tracksData)
         });
 
         const addedTracksData = await addTracksResponse.json();
