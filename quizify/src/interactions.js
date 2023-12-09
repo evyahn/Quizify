@@ -20,16 +20,18 @@ async function moodRec(moodArray) {
 function parseRec(result) {
     // dictionry -> "tracks" -> "id"
     // ^ playlist_id required for adding song to playlist
-    const trackIds = []
-    for (const item in result["tracks"]) {
+    const trackNames = []
+    for (const item in result.tracks) {
         // console.log(" ITEM IN result[tracks] ----- " + item)
         const trackId = item["id"]
-        const trackNames = item["name"]
+        const trackName = item.name;
+        console.log(trackName);
+        trackNames.push(trackName)
         console.log("TRACK NAMES ----------- " + trackNames)
         // console.log(" ITEM'S ID = " + trackId)
-        trackIds.push(trackId);
+        // trackIds.push(trackId);
     }
-    return trackIds;
+    // return trackIds;
 
     // delete when implementing
     // return ['track_id_1', 'track_id_2'];

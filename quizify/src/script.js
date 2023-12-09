@@ -1,7 +1,7 @@
 const clientId = auth.clientId; // Replace with your client ID
 const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
-let accessToken; // = JSON.parse(localStorage.getItem('access_token') || false); // changed from "let accessToken;"
+let accessToken // = JSON.parse(localStorage.getItem('access_token') || false); // changed from "let accessToken;"
 console.log("get access token " + accessToken)
 
 if (!code) {
