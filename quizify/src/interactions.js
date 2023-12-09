@@ -1,5 +1,6 @@
 const profile = JSON.parse(localStorage.getItem('profile'));
-const accessToken = localStorage.getItem('access_token');
+const accessToken = JSON.parse(localStorage.getItem('access_token'));
+console.log("Access Token = " + accessToken)
 
 // back to home button -> index.html
 const backToHome2 = document.querySelector(".home-button");
@@ -44,6 +45,7 @@ async function createPlaylist(profile, recData) {
     try {
         // step 1: create playlist
         console.log("PROFILE ID -------- " + profile.id)
+        console.log("ACCESS TOKEN = " + accessToken)
         const playlistName  = "Quizify's awesome playlist!!!";     // rename later
         const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
             method: 'POST',
