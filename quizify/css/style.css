@@ -46,9 +46,14 @@ main {
     margin-left: 30px;
 }
 
-h2{
-    width: 250px;
+.buttonPhoto:hover {
+    box-shadow: 10px 10px 10px #FEBEBD;
+    border-radius: 20px;
 }
+
+/* h2{
+    width: 250px;
+} */
 
 footer {
     background-color: #FEBEBD;
@@ -145,6 +150,22 @@ header {
     border-radius: 10px;
 }
 
+#index-page {
+    text-align: center;
+    background: #FEBEBD; /* Fallback */
+    animation: color 10s infinite linear;
+}
+
+#index-page a {
+    text-decoration: none;
+}
+
+@keyframes color {
+    0%   { background: #ffe9e9; }
+    50%  { background: #FEBEBD; }
+    100% { background: #ffe9e9; }
+}
+
 h3{
     margin: 15px;
     font-size: larger;
@@ -154,7 +175,7 @@ h1, h2 { color: #DD1F1D; }
 
 h1 {
     margin: 50px;
-    font-size: 40px;
+    font-size: 45px;
 }
 
 h2 { 
@@ -251,11 +272,6 @@ button {
     box-shadow: 8px 12px;
 }
 
-/* .hide {
-    display: none;
-    visibility: hidden;
-} */
-
 .page-button-container{
     height: 150px;
     position: relative;
@@ -332,7 +348,6 @@ button {
     background: #DD1F1D;
     cursor: pointer;
 }
-
 
 .notSelected {
     opacity: 50%;
