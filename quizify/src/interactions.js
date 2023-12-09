@@ -52,13 +52,14 @@ async function createPlaylist(profile, recData) {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
-            }, body: {
+            }, body: JSON.stringify({
                 name: playlistName,
                 public: true // set false if you want this to be private
-            }
+            })
         });
         const playlistData = await result.json();
         const playlistId = playlistData.id;
+        // const playlistId = "0JKDY4xudeCKljBW8z5Anr"
         console.log("PLAYLIST ID ----------- " + playlistId)
 
         // step 2: add tracks to playlist
