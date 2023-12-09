@@ -24,7 +24,7 @@ const cityMeaning = [
     [30, 100, 50, 35, 80, 0],
     [0.9, 1, 0.2, 0.5, 0.35, 0.7],
     ['emo', 'r-n-b', 'folk', 'indie', 'country', 'happy'], // no surfrock
-    [2, 7, 3, 5, 10, 0]
+    [0.2, 0.7, 0.3, 0.5, 1, 0]
 ]
 
 const answerContainers = document.querySelectorAll('.answer-container');

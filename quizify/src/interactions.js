@@ -1,6 +1,5 @@
 const profile = JSON.parse(localStorage.getItem('profile'));
 const accessToken = JSON.parse(localStorage.getItem('access_token'));
-console.log("Access Token = " + accessToken)
 
 // back to home button -> index.html
 const backToHome2 = document.querySelector(".home-button");
@@ -17,35 +16,44 @@ async function moodRec(moodArray) {
     return data;
 }
 
+async function tasteRec(tasteArray) {
+    const tasteURL = `https://api.spotify.com/v1/recommendations?seed_genres=${tasteArray[2]}&target_energy=${tasteArray[1]}&target_popularity=${tasteArray[3]}&target_speechiness=${tasteArray[4]}`;
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
+    const result = await fetch(tasteURL, {
+        method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
+    });
+    const data = await result.json()
+    return data;
+}
+
+async function cityRec(cityArray) {
+    const cityURL = `https://api.spotify.com/v1/recommendations?seed_genres=${cityArray[4]}&target_energy=${cityArray[0]}&target_popularity=${cityArray[2]}&target_speechiness=${cityArray[3]}&target_tempo=${cityArray[1]}&target_valence=${cityArray[5]}`;
+    let accessToken = JSON.parse(localStorage.getItem('access_token'));
+    const result = await fetch(cityURL, {
+        method: "GET", headers: { Authorization: `Bearer ${accessToken}`}
+    });
+    const data = await result.json()
+    return data;
+}
+
 // todo: create a function that parses through the recommendations and outputs an array with all of the track ids
 function parseRec(result) {
     // dictionry -> "tracks" -> "id"
     // ^ playlist_id required for adding song to playlist
     const trackNames = [];
     const trackIds = [];
-    console.log(result);
     for (const item in result.tracks) {
-        console.log(item);
-        // console.log(" ITEM IN result[tracks] ----- " + item)
         const trackId = "spotify:track:" + result.tracks[item].id;
         const trackName = result.tracks[item].name;
         trackNames.push(trackName);
-        console.log("TRACK NAMES ----------- " + trackNames);
-        // console.log(" ITEM'S ID = " + trackId)
         trackIds.push(trackId);
     }
-    console.log(trackIds);
     return trackIds;
-
-    // delete when implementing
-    // return ['track_id_1', 'track_id_2'];
 }
 
 async function createPlaylist(profile, recData) {
     try {
         // step 1: create playlist
-        console.log("PROFILE ID -------- " + profile.id)
-        console.log("ACCESS TOKEN = " + accessToken)
         const playlistName  = "Quizify's awesome playlist!!!";     // rename later
         const result = await fetch(`https://api.spotify.com/v1/users/${profile.id}/playlists`, {
             method: 'POST',
@@ -59,15 +67,11 @@ async function createPlaylist(profile, recData) {
         });
         const playlistData = await result.json();
         const playlistId = playlistData.id;
-        // const playlistId = "0JKDY4xudeCKljBW8z5Anr"
-        console.log("PLAYLIST ID ----------- " + playlistId)
 
         // step 2: add tracks to playlist
         const tracksData = {
             uris: recData
         };
-
-        console.log(tracksData);
         
         const addTracksResponse = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
             method: 'POST',
@@ -79,8 +83,7 @@ async function createPlaylist(profile, recData) {
         });
 
         const addedTracksData = await addTracksResponse.json();
-        console.log('Tracks added to playlist:', addedTracksData);
-        alert('Playlist created and tracks added successfully!');
+        alert('Playlist has been added to your Spotify account! Please allow a moment to load.');
     } catch (error) {
         console.error('Error:', error);
         alert('An error occurred while creating the playlist');
@@ -142,55 +145,22 @@ resultsButton.addEventListener("click", () => {
     
     resultsState = true;        // creates only one result box
 
-    // -------------------- WORKING ON THIS RNNNNN ---------------------------
+
     playlistButton.addEventListener("click", async () => {
         if (Array.isArray(moodArray)) {
-            console.log("clicked")
             const data = await moodRec(moodArray);
-            console.log("DATA ---------------- ", data);
-            console.log(data);
             const tracks = parseRec(data);
             createPlaylist(profile, tracks);
-            // } catch (error) {
-            // console.error("Error occurred:", error);
-            // // Handle errors here if needed
         } else if (Array.isArray(tasteArray)) {
-            const data = tasteRec(tasteArray);
+            const data = await tasteRec(tasteArray);
             const tracks = parseRec(data);
-            // createPlaylist(profile, tracks);
+            createPlaylist(profile, tracks);
         } else if (Array.isArray(cityArray)) {
-            const data = cityRec(cityArray);
+            const data = await cityRec(cityArray);
             const tracks = parseRec(data);
-            // createPlaylist(profile, tracks);
+            createPlaylist(profile, tracks);
         }
         });
-        // if (Array.isArray(moodArray)) {
-        //     const recs = async () => {
-        //         console.log("clicked")
-        //         data = await moodRec(moodArray);
-        //         console.log("DATA ---------------- " + data)
-        //         const tracks = parseRec(data);
-        //         createPlaylist(profile, tracks);
-        //     }
-
-        // const data = moodRec(moodArray);
-        // const tracks = parseRec(data);
-        // createPlaylist(profile, tracks);
-
-    //     }
-    //     else if (Array.isArray(tasteArray)) {
-    //         const data = tasteRec(tasteArray);
-    //         const tracks = parseRec(data);
-    //         createPlaylist(profile, tracks);
-    //     }
-    //     else if (Array.isArray(cityArray)) {
-    //         const data = cityRec(cityArray);
-    //         const tracks = parseRec(data);
-    //         createPlaylist(profile, tracks);
-    //     }
-        
-    // })
-
     };    
 })
 
