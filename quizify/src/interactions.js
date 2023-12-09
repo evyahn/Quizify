@@ -20,18 +20,21 @@ async function moodRec(moodArray) {
 function parseRec(result) {
     // dictionry -> "tracks" -> "id"
     // ^ playlist_id required for adding song to playlist
-    const trackNames = []
+    const trackNames = [];
+    const trackIds = [];
+    console.log(result);
     for (const item in result.tracks) {
+        console.log(item);
         // console.log(" ITEM IN result[tracks] ----- " + item)
-        const trackId = item["id"]
-        const trackName = item.name;
-        console.log(trackName);
-        trackNames.push(trackName)
-        console.log("TRACK NAMES ----------- " + trackNames)
+        const trackId = result.tracks[item].id;
+        const trackName = result.tracks[item].name;
+        trackNames.push(trackName);
+        console.log("TRACK NAMES ----------- " + trackNames);
         // console.log(" ITEM'S ID = " + trackId)
-        // trackIds.push(trackId);
+        trackIds.push(trackId);
     }
-    // return trackIds;
+    console.log(trackIds);
+    return trackIds;
 
     // delete when implementing
     // return ['track_id_1', 'track_id_2'];
@@ -138,6 +141,7 @@ resultsButton.addEventListener("click", () => {
             console.log("clicked")
             const data = await moodRec(moodArray);
             console.log("DATA ---------------- ", data);
+            console.log(data);
             const tracks = parseRec(data);
             // createPlaylist(profile, tracks);
             // } catch (error) {
