@@ -3,9 +3,4 @@
 Quizify is an application that allows users to make playlists by taking a quiz.<br />
 Developed by Evelyn Ahn and Grace Whaley for SI 379 final project.
 
-Evelyn created the script javascript file which interacts with the Spotify API such as fetching profiles, creating playlists, and getting song recommendations.<br />
-She also wrote the quiz2 javascript file which manages the quiz functionality.<br />
-
-Grace created the html files and css styling sheets.<br />
-She also created the interactions javascript file which created events for the buttons such as get playlist results and moving between pages.<br />
-She assisted with the quiz2 functionality and implementation. 
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FfPLVE9FC2eU0WOsWcMgzs5%2FSI-379-Final-Project%3Fpage-id%3D101%253A2%26type%3Ddesign%26node-id%3D101-4%26viewport%3D222%252C466%252C0.05%26t%3DN63VCQQaYuMr7LwM-1%26scaling%3Dcontain%26starting-point-node-id%3D101%253A4%26mode%3Ddesign" allowfullscreen></iframe>
