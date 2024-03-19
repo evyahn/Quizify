@@ -217,24 +217,42 @@ function writeCityResults(cityArray) {
         energyResult = "high"
     }
     const tempo = cityArray[1]
-    let tempoResult = "slow"
+    let tempoResult = "fast"
     let city;
-    if (tempo >= 75) {
-        city = "Anchorage, AK"
-    } else if (tempo >= 90) {
-        city = "Nashville, TN"
-    } else if (tempo >= 109) {
-        city = "Denver, CO"
-    } else if (tempo >= 120) {
-        city = "Portland, OR"
-    } else if (tempo >= 120) {
-        city = "Portland, OR"
-        tempoResult = "fast"
-    } else if (tempo >= 140) {
-        city = "Charleston NC"
-    } else {
-        city = "Phoenix, AZ"
+    // if (tempo >= 75) {
+    //     city = "Anchorage, AK"
+    // } else if (tempo >= 90) {
+    //     city = "Nashville, TN"
+    // } else if (tempo >= 109) {
+    //     city = "Denver, CO"
+    // } else if (tempo >= 120) {
+    //     city = "Portland, OR"
+    // } else if (tempo >= 120) {
+    //     city = "Portland, OR"
+    //     tempoResult = "fast"
+    // } else if (tempo >= 140) {
+    //     city = "Charleston NC"
+    // } else {
+    //     city = "Phoenix, AZ"
+    // }
+
+    if (tempo >= 160) {
+        city = "Phoenix, AZ";
+    } else if (tempo >= 140){
+        city = "Charleston, NC";
+    } else if (tempo >= 120){
+        city = "Portland, OR";
+    } else if (tempo >= 109){
+        city = "Denver, CO";
+        tempoResult = "slow";
+    } else if (tempo >= 90){
+        city = "Nashville, TN";
+        tempoResult = "slow";
+    } else if (tempo >= 75){
+        city = "Anchorage, AK";
+        tempoResult = "slow";
     }
+
     const popularity = cityArray[2]
     let popularityResult = "low"
     if (popularity >= 50) {
